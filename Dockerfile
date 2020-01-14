@@ -53,6 +53,8 @@ RUN wget -q -O /tmp/zpush.tgz "$ZPUSH_URL" \
   && chmod +x /usr/local/bin/docker-run.sh \
   && mv /opt/zpush/config.php /opt/zpush/config.php.dist \
   && mv /opt/zpush/backend/imap/config.php /opt/zpush/backend/imap/config.php.dist
+  
+RUN sed -i 's/if ($bpReturnType == SYNC_BODYPREFERENCE_MIME || $is_smime || in_array(SYNC_BODYPREFERENCE_MIME, $bodypreference)) {/if ($bpReturnType == SYNC_BODYPREFERENCE_MIME || $is_smime || $is_multipart || in_array(SYNC_BODYPREFERENCE_MIME, $bodypreference)) {/g' /opt/zpush/backend/imap/imap.php
 
 VOLUME ["/state"]
 VOLUME ["/config"]
