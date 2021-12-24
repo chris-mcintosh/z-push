@@ -4,9 +4,10 @@ This [z-push docker image](https://hub.docker.com/r/17halbe/z-push/) is designed
 
 #### The following variables are currently used:
 
-- `TIMEZONE`: in the format of `Europe/Zurich`
+- `TIMEZONE`: in the format of `US/Eastern`
 - `IMAP_SERVER`: your imap server address/ip
 - `IMAP_PORT`: imap port
+- `IMAP_OPTIONS`: /ssl/novalidate-cert
 - `SMTP_SERVER`: smtp server address/ip
 - `SMTP_PORT`: smtp port
 - `DEBUG`: [0/1] disables/enables verbose logging.
@@ -26,9 +27,10 @@ Example:
 ```
   docker run -d -name z-push \
   -v ./config:/config/ \
-  -e TIMEZONE=Europe/Zurich \
+  -e TIMEZONE=US/Eastern \
   -e IMAP_SERVER=imap.yourdomain.tld \
   -e IMAP_PORT=143 \
+  -e IMAP_OPTIONS=/ssl/novalidate-cert \
   -e SMTP_SERVER=smtp.yourdomain.tld \
   -e SMTP_PORT=465 \
   -e DEBUG=1 \
